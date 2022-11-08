@@ -1,9 +1,0 @@
-{
-    "dev": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "e_commerce_ts",
-      "user": "x3bodee",
-      "password": "1234"
-    }
-  }
