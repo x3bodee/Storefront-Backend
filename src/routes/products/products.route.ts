@@ -7,10 +7,10 @@ import { productsByCategory } from '../../controllers/products/productsByCategor
 const router = express.Router();
 
 
-router.get('index',index);
-router.get('index',show);
-router.get('index',create);
-router.get('index',top5);
-router.get('index',productsByCategory);
+router.get('/index',index);
+router.get('/show',show);
+router.get('/create',create);
+router.get('/top5',top5);
+router.get('/productsByCategory',productsByCategory);
 
 export default router;

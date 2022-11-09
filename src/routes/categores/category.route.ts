@@ -4,7 +4,7 @@ import { create } from '../../controllers/categores/create';
 const router = express.Router();
 
 
-router.get('index',index);
-router.get('index',create);
+router.get('/index',index);
+router.get('/create',create);
 
 export default router;

@@ -5,7 +5,8 @@ import { index } from '../../controllers/users/index';
 const router = express.Router();
 
 
-router.get('index',create);
-router.get('index',index);
-router.get('index',show);
+router.get('/create',create);
+router.get('/index',index);
+router.get('/show',show);
+
 export default router;
