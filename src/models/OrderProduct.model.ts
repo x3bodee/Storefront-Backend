@@ -11,11 +11,11 @@ export type OrderProduct = {
 
   export class OrderProductModel {
 
-    // async index(): Promise<OrderProduct[]> {
+    // async create(): Promise<OrderProduct[]> {
     //     try {
          
     //       const conn = await db.connect();
-    //       const sql = 'SELECT * FROM .....';
+    //       const sql = 'insert into order_product (product_id,order_id,order_quantity) values ($1,$2,$3);';
     //       const result = await conn.query(sql);
     //       conn.release();
     

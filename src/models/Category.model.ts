@@ -16,7 +16,7 @@ export type Category = {
     //     try {
          
     //       const conn = await db.connect();
-    //       const sql = 'SELECT * FROM .....';
+    //       const sql = 'SELECT * FROM category';
     //       const result = await conn.query(sql);
     //       conn.release();
     
@@ -25,5 +25,20 @@ export type Category = {
     //       throw new Error(`${err}`);
     //     }
     //   }
+
+    // async create(): Promise<Category[]> {
+    //     try {
+         
+    //       const conn = await db.connect();
+    //       const sql = 'insert into category (category_name) values ($1);';
+    //       const result = await conn.query(sql);
+    //       conn.release();
+    
+    //       return result.rows;
+    //     } catch (err) {
+    //       throw new Error(`${err}`);
+    //     }
+    //   }
+
 
   }
