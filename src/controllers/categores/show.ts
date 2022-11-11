@@ -7,6 +7,7 @@ interface RequestParams {
 }
 
 const Category = new CategoryModel();
+
 export const show = async (req: Request< RequestParams , unknown, unknown, unknown >, res: Response) => {
   console.log('show category by id');
   

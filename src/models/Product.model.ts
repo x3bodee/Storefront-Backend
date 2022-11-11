@@ -8,6 +8,7 @@ import db from '../helpers/db';
 
 export type Product = {
     product_id: number;
+    product_name:string;
     price: number;
     category: number;
     category_name?: string;
@@ -17,47 +18,47 @@ export type Product = {
 
   export class ProductModel {
 
-    // async index(): Promise<Product[]> {
-    //     try {
+    async index(): Promise<Product[]> {
+        try {
          
-    //       const conn = await db.connect();
-    //       const sql = 'SELECT * FROM product;';
-    //       const result = await conn.query(sql);
-    //       conn.release();
+          const conn = await db.connect();
+          const sql = 'SELECT product_id, product_name, price, category_name, category_id, p.created_at FROM product p inner join category on category = category_id;';
+          const result = await conn.query(sql);
+          conn.release();
     
-    //       return result.rows;
-    //     } catch (err) {
-    //       throw new Error(`${err}`);
-    //     }
-    //   }
+          return result.rows;
+        } catch (err) {
+          throw new Error(`${err}`);
+        }
+      }
 
-    // async productsByCategory(): Promise<Product[]> {
-    //     try {
+    async productsByCategory(id:number): Promise<Product[]> {
+        try {
          
-    //       const conn = await db.connect();
-    //       const sql = 'select product_id,product_name,price,category,product.created_at,category_name from product full outer join category on product.category = category_id where category = ?;';
-    //       const result = await conn.query(sql);
-    //       conn.release();
+          const conn = await db.connect();
+          const sql = 'select product_id,product_name,price,category_name,category_id,p.created_at,category_name from product p inner join category on p.category = category_id where category = ($1);';
+          const result = await conn.query(sql,[id]);
+          conn.release();
      
-    //       return result.rows;
-    //     } catch (err) {
-    //       throw new Error(`${err}`);
-    //     }
-    //   }
+          return result.rows;
+        } catch (err) {
+          throw new Error(`${err}`);
+        }
+      }
 
-    // async show(): Promise<Product[]> {
-    //     try {
+    async show(id:number): Promise<Product> {
+        try {
          
-    //       const conn = await db.connect();
-    //       const sql = 'select * from product where product_id = ?;';
-    //       const result = await conn.query(sql);
-    //       conn.release();
+          const conn = await db.connect();
+          const sql = 'select product_id, product_name, price, category_name, category_id, p.created_at FROM product p inner join category on category = category_id where product_id = ($1);';
+          const result = await conn.query(sql,[id]);
+          conn.release();
     
-    //       return result.rows;
-    //     } catch (err) {
-    //       throw new Error(`${err}`);
-    //     }
-    //   }
+          return result.rows[0];
+        } catch (err) {
+          throw new Error(`${err}`);
+        }
+      }
 
     // async top5(): Promise<Product[]> {
     //     try {
@@ -73,17 +74,29 @@ export type Product = {
     //     }
     //   }
 
-    // async create(): Promise<Product[]> {
-    //     try {
+    async create(name:string,price:number,category:number): Promise<Product> {
+        try {
          
-    //       const conn = await db.connect();
-    //       const sql = 'insert into product (product_name,price,category) values ($1,$2,$3); ';
-    //       const result = await conn.query(sql);
-    //       conn.release();
-    
-    //       return result.rows;
-    //     } catch (err) {
-    //       throw new Error(`${err}`);
-    //     }
-    //   }
+          const conn = await db.connect();
+          
+          // to prevent the db from reserving the id + to apply forgin key constaint.
+          const sql= "select category_id from category where category_id = ($1);";
+          const check_if_category_exist = await conn.query(sql,[category]);
+          if (!check_if_category_exist.rows[0]) throw new Error(`Error: The category you are using is wrong`);
+          
+          // to prevent the db from reserving the id.
+          const sql1= "select product_name, category from product where product_name = ($1) AND category = ($2);";
+          const select_result = await conn.query(sql1,[name,category]);
+          if (select_result.rows[0]) throw new Error(`Error: This record alredy exist!!`);
+          
+          const sql2 = 'insert into product (product_name,price,category) values ($1,$2,$3) RETURNING *;';
+          const insert_result = await conn.query(sql2,[name,price,category]);
+          
+          conn.release();
+          
+          return insert_result.rows[0];
+        } catch (err) {
+          throw new Error(`${err}`);
+        }
+      }
   }
