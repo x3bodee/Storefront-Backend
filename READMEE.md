@@ -11,7 +11,8 @@
 #### Users
 - Index [token required]
 - Show [token required]
-- Create N[token required]
+- signup N[token required]
+- signin N[token required]
 
 #### Orders
 - Current Order by user (args: user id)[token required]
