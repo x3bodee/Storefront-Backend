@@ -60,19 +60,19 @@ export type Product = {
         }
       }
 
-    // async top5(): Promise<Product[]> {
-    //     try {
+    async top5(): Promise<Product[]> {
+        try {
          
-    //       const conn = await db.connect();
-    //       const sql = 'select product.product_id, product.product_name, count(order_product.product_id) from order_product left join product on order_product.product_id = product.product_id group by product.product_id ORDER BY COUNT(order_product.product_id) DESC limit (5);';
-    //       const result = await conn.query(sql);
-    //       conn.release();
+          const conn = await db.connect();
+          const sql = 'select p.product_id, p.product_name, p.price, c count(op.product_id) from order_product op left join product p on order_product.product_id = product.product_id group by product.product_id ORDER BY COUNT(order_product.product_id) DESC limit (5);';
+          const result = await conn.query(sql);
+          conn.release();
     
-    //       return result.rows;
-    //     } catch (err) {
-    //       throw new Error(`${err}`);
-    //     }
-    //   }
+          return result.rows;
+        } catch (err) {
+          throw new Error(`${err}`);
+        }
+      }
 
     async create(name:string,price:number,category:number): Promise<Product> {
         try {

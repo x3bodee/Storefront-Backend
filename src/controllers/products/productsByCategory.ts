@@ -24,7 +24,7 @@ export const productsByCategory = async (req: Request< RequestParams , unknown, 
     return res.status(200).json({status: true, msg: 'Done', products});
     
   } catch (error) {
-    console.log('error in product index controller: ', error);
+    console.log('error in product productsByCategory controller: ', error);
     
     const err = error+"";
     return res.status(400).json({status: false, msg: 'Error', err});

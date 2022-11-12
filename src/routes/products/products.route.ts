@@ -8,11 +8,11 @@ import { productsByCategory } from '../../controllers/products/productsByCategor
 const router = express.Router();
 
 
-router.get('/productsByCategory/:id ',productsByCategory);
+router.get('/productsByCategory/:id',productsByCategory);
+router.get('/top5',top5);
 router.get('/',index);
 router.get('/:id',show);
 router.post('/',create);
 
-router.get('/top5',top5);
 
 export default router;
