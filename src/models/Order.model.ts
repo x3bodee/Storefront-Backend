@@ -1,5 +1,6 @@
 import db from '../helpers/db';
-import { convert_ids_to_sql_list, check_if_product_is_missing } from '../helpers/helper_for_product_model';
+import format from 'pg-format';
+import { convert_ids_to_sql_list, check_product_list } from '../helpers/helper_for_product_model';
 import { Product } from './Product.model';
 
 // order_id SERIAL PRIMARY KEY,
@@ -54,28 +55,36 @@ export type Order = {
     //   }
 
     async create(user_id:number, products_list: [product_id:number,quantity:number][]): Promise<Order> {
-        try {
+      const conn = await db.connect();  
+      try {
 
-          const conn = await db.connect();
-          const converted_list = convert_ids_to_sql_list(products_list);
-          console.log("converted_list: ",converted_list);
-          const data =[1,2,4];
-          var params = data.map(function(item, idx) {return '$' + (idx+1)});
+          const converted_id_list = convert_ids_to_sql_list(products_list);
+          const converted_quantites_list =  products_list.map(e=> e[1]);
+          
           // to prevent the db from reserving the id.
-          // const sql1= 'select * from product where product_id IN (' + params.join(',') + ');';
           const sql1= 'select * from product where product_id = ANY ($1);';
-          const select_result = await conn.query(sql1,[data]);
+          const select_result = await conn.query(sql1,[converted_id_list]);
           const list= (select_result.rows as unknown) as Product[];
-          console.log(list);
-          // if (check_if_product_is_missing(list,converted_list)) throw new Error(`Error: This record alredy exist!!`);
+          console.log("check_product_list: ",check_product_list(list,converted_id_list));
+          if (!check_product_list(list,converted_id_list)) throw new Error(`Error: there is a wrong product in the list!!`);
          
-          throw new Error(`Error: to stop`);
-          // const sql = 'insert into orders (user_id) values ($1) RETURNING *;';
-          // const result = await conn.query(sql);
-          // conn.release();
+          // throw new Error(`Error: to stop`);
+          await conn.query('BEGIN');
+          const insert_order_sql = 'insert into orders (user_id) values ($1) RETURNING *;';
+          const insert_order_result = await conn.query(insert_order_sql,[user_id]);
+          console.log(insert_order_result.rows);
+          const order_product = products_list.map( e=> e.concat(insert_order_result.rows[0].order_id) );
+          console.log(order_product)
+          const insert_order_products_sql = 'insert into order_product (product_id, order_quantity, order_id) values %L';
+          const insert_order_products_result = await conn.query(format(insert_order_products_sql,order_product));
+          console.log(insert_order_products_result);
+          // throw new Error(`Error: to stop`);
+          await conn.query('COMMIT')
+          conn.release();
     
-          // return result.rows[0];
+          return insert_order_result.rows[0]
         } catch (err) {
+          await conn.query('ROLLBACK')
           throw new Error(`${err}`);
         }
       }
