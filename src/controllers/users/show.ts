@@ -1,14 +1,11 @@
 import { Request, Response } from 'express';
 import { UserModel, User } from '../../models/User.model';
 
-interface RequestParams {
-  id:string;
-}
 
 // show all users
 const User = new UserModel();
 
-export const show = async (req: Request< RequestParams , unknown, unknown, unknown >, res: Response) => {
+export const show = async (req: Request< {id:string} , {}, {}, {} >, res: Response) => {
   console.log('show user info');
   try {
     if (isNaN(Number(req.params.id)) || Number(req.params.id) < 1 ) throw new Error(`user id must be a number greater than 0`);
@@ -26,5 +23,4 @@ export const show = async (req: Request< RequestParams , unknown, unknown, unkno
     return res.status(400).json({status: false, msg: 'Error', err});
     
   }
-  return res.status(200);
   };

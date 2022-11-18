@@ -6,7 +6,8 @@ const Order = new OrderModel();
 export const completedOrdersByUser = async (req: Request, res: Response) => {
   console.log('show completed orders');
   try {
-    let id = ((req.headers.user_id as unknown)as string);
+    let id = (req.user_id as string);
+    // throw new Error(`######## - Throw Error - ########`);
     if (isNaN(Number(id)) || Number(id) < 1 ) throw new Error(`user id must be a number greater than 0`);
     const user_id = Number(id);
     const orders = await Order.completedOrdersByUser(user_id);
