@@ -4,11 +4,11 @@ insert into users (
     email,
     password
 ) values 
-('Abdullah','Basheer','ab@bbb.ccc','1234'),
-('Ahmed','Al-ghamdi','ag@bbb.ccc','1234'),
-('Mohammed','Basheer','mo@bbb.ccc','1234'),
-('Jamal','Zayed','jz@bbb.ccc','1234'),
-('Adwa','Abdo','aa@bbb.ccc','1234');
+('Abdullah','Basheer','ab@bbb.ccc','$2b$12$69H0FVJrlP7hBYaDkUTCIOHyetdhmCFsoazT4sVuyaWtbYdnHVFlm'),
+('Ahmed','Al-ghamdi','ag@bbb.ccc','$2b$12$Rqegy7axUMpCykd2GTpSOO6hqVpCeoYMgBKuf3uALhMRf90Dtgi5S'),
+('Mohammed','Basheer','mo@bbb.ccc','$2b$12$d2FyZiIwv7LOl8wg7J2XaumYhZ2oDTrZ0ggn0Xxvtxx2KsfLJnqE.'),
+('Jamal','Zayed','jz@bbb.ccc','$2b$12$wixRpVeQs15unPYW7dkc8u53cU1.C.VNAPDMyXbB6bLGgra7aOYfa'),
+('Adwa','Abdo','aa@bbb.ccc','$2b$12$WASa9q3B1Z/VY.BgWX4khuI/dfwoGO.N9S/DUW6PDGwdm0e6G3DaK');
 
 insert into category (
     category_name

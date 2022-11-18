@@ -5,8 +5,8 @@ import { completedOrdersByUser }  from '../../controllers/orders/completedOrders
 const router = express.Router();
 
 
+router.post('/',create);
 router.get('/completedOrdersByUser',completedOrdersByUser);
-router.get('/create',create);
 router.get('/currentOrdersByUser',currentOrdersByUser);
 
 export default router;

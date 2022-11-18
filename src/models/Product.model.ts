@@ -12,7 +12,7 @@ export type Product = {
     price: number;
     category: number;
     category_name?: string;
-    created_at: Date;
+    created_at?: Date;
 
   };
 
@@ -99,4 +99,5 @@ export type Product = {
           throw new Error(`${err}`);
         }
       }
+
   }
