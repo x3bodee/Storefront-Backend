@@ -1,58 +1,73 @@
 import db from '../helpers/db';
 import format from 'pg-format';
-import { convert_ids_to_sql_list, check_product_list } from '../helpers/helper_for_product_model';
+import { convert_ids_to_sql_list, check_product_list,  } from '../helpers/helper_for_product_model';
+import { compine_order_lines_after } from '../helpers/compine_order_lines';
 import { Product } from './Product.model';
 
 // order_id SERIAL PRIMARY KEY,
 // user_id INT REFERENCES users(user_id) NOT NULL,
 // status boolean  NOT NULL DEFAULT FALSE,
 // created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-
+export type CreatedOrder ={
+    order_id: number;
+    status: boolean;
+    user_id: number;
+    created_at: Date;
+    product_id:number;
+    product_name:string;
+    product_quantity:number;
+    price:number;
+    category_id:number;
+    category_name:string;
+}
 export type Order = {
     order_id?: number;
     user_id: number;
     products_list?:[product_id:number,quantity:number][]; // this will be used when we create the order.
     // this will be used when we return the data.
-    products_data_list?:[
+    products_data_list?:[{
       product_name:string, category_name:string, price:number,
       quantity:number, product_id:number, category_id:number
-    ][];
+    }
+    ];
     status?: boolean;
     created_at?: Date;
   };
 
   export class OrderModel {
 
-    // async completedOrdersByUser(): Promise<Order[]> {
-    //     try {
+    async completedOrdersByUser(id:number): Promise<Order[]> {
+        try {
          
-    //       const conn = await db.connect();
-    //       const sql = 'select o.order_id, o.status, o.user_id, o.created_at, p.product_id, p.product_name, p.price, p.category from order_product op inner join orders o on op.order_id = o.order_id inner join product p on op.product_id = p.product_id where o.user_id = 1 AND o.status = True;';
-    //       const result = await conn.query(sql);
-    //       conn.release();
+          const conn = await db.connect();
+          const sql = 'select o.order_id, o.status, o.user_id, o.created_at, p.product_id, p.product_name, p.price, p.category as category_id, c.category_name, op.order_quantity as product_quantity from order_product op inner join orders o on op.order_id = o.order_id inner join product p on op.product_id = p.product_id inner join category c on c.category_id = p.category where o.user_id = ($1) AND status = True order by o.order_id;';
+          const result = await conn.query(sql,[id]);
+          const final_result = compine_order_lines_after(result.rows);
+          conn.release();
+          
+          return final_result;
+        } catch (err) {
+          throw new Error(`${err}`);
+        }
+      }
+      
+      
+      // TODO: you can delete the user_id from the select.
+      
+      async currentOrdersByUser(id:number): Promise<Order[]> {
+        try {
+          
+          const conn = await db.connect();
+          const sql = 'select o.order_id, o.status, o.user_id, o.created_at, p.product_id, p.product_name, p.price, p.category as category_id, c.category_name, op.order_quantity as product_quantity from order_product op inner join orders o on op.order_id = o.order_id inner join product p on op.product_id = p.product_id inner join category c on c.category_id = p.category where o.user_id = ($1) AND status = False order by o.order_id;';
+          const result = await conn.query(sql,[id]);
+          const final_result = compine_order_lines_after(result.rows);
+          conn.release();
     
-    //       return result.rows;
-    //     } catch (err) {
-    //       throw new Error(`${err}`);
-    //     }
-    //   }
-
-
-    // TODO: you can delete the user_id from the select.
-
-    // async currentOrdersByUser(): Promise<Order[]> {
-    //     try {
-         
-    //       const conn = await db.connect();
-    //       const sql = 'select o.order_id, o.status, o.user_id, o.created_at, p.product_id, p.product_name, p.price, p.category from order_product op inner join orders o on op.order_id = o.order_id inner join product p on op.product_id = p.product_id where o.user_id = 1 AND o.status = False;';
-    //       const result = await conn.query(sql);
-    //       conn.release();
-    
-    //       return result.rows;
-    //     } catch (err) {
-    //       throw new Error(`${err}`);
-    //     }
-    //   }
+          return final_result;
+        } catch (err) {
+          throw new Error(`${err}`);
+        }
+      }
 
     async create(user_id:number, products_list: [product_id:number,quantity:number][]): Promise<Order> {
       const conn = await db.connect();  

@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 router.post('/',create);
-router.get('/completedOrdersByUser/:id',completedOrdersByUser);
-router.get('/currentOrdersByUser/:id',currentOrdersByUser);
+router.get('/completedOrdersByUser',completedOrdersByUser);
+router.get('/currentOrdersByUser',currentOrdersByUser);
 
 export default router;
