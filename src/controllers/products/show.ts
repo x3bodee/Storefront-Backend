@@ -1,15 +1,11 @@
 import { Request, Response } from 'express';
 import { ProductModel } from '../../models/Product.model';
 
-interface RequestParams {
-  id:string;
-}
-
 // show all products
 
 const Product = new ProductModel();
 
-export const show = async (req: Request< RequestParams , unknown, unknown, unknown >, res: Response) => {
+export const show = async (req: Request< {id:string} , unknown, unknown, unknown >, res: Response) => {
   console.log('show one product');
 
   try {  

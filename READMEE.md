@@ -2,25 +2,27 @@
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- Top 5 most popular products 
-- Products by category (args: product category)
+- Index [X]
+- Show [X]
+- Create [token required] [X]
+- Top 5 most popular products  [X]
+- Products by category (args: product category) [X]
 
 #### Users
-- Index [token required]
-- Show [token required]
-- signup N[token required]
-- signin N[token required]
+- Index [token required] [X]
+- Show [token required] [X]
+- signup N[token required] [X]
+- signin N[token required] [X]
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- Completed Orders by user (args: user id)[token required]
+- Create Order [token required] [X]
+- Current Order by user (args: user id)[token required] [X]
+- Completed Orders by user (args: user id)[token required] [X]
 
 #### Categores
-- Index [token required]
-- Create [token required]
+- Index [X]
+- Show [X]
+- Create [token required] [X]
 
 
 ## Data Shapes

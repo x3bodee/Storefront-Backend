@@ -8,6 +8,8 @@ import { Product } from './Product.model';
 // user_id INT REFERENCES users(user_id) NOT NULL,
 // status boolean  NOT NULL DEFAULT FALSE,
 // created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+
+// using this type when I select from the database
 export type CreatedOrder ={
     order_id: number;
     status: boolean;
@@ -20,16 +22,20 @@ export type CreatedOrder ={
     category_id:number;
     category_name:string;
 }
+
 export type Order = {
     order_id?: number;
     user_id: number;
-    products_list?:[product_id:number,quantity:number][]; // this will be used when we create the order.
-    // this will be used when we return the data.
+
+    // using this when we receive new order, for the creattion of the order.
+    products_list?:[product_id:number,quantity:number][]; 
+    
+    // using this to set the product list of this order
     products_data_list?:[{
       product_name:string, category_name:string, price:number,
       quantity:number, product_id:number, category_id:number
-    }
-    ];
+    }];
+    
     status?: boolean;
     created_at?: Date;
   };
