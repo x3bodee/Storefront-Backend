@@ -20,7 +20,7 @@
 - Completed Orders by user (args: user id)[token required] [X]
 
 #### Categores
-- Index [X]
+- [X] Index [X]
 - Show [X]
 - Create [token required] [X]
 
