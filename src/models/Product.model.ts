@@ -1,4 +1,4 @@
-import db from '../helpers/db';
+import db from '../helper/db';
 
 // product_id SERIAL PRIMARY KEY,
 //     product_name VARCHAR(200) NOT NULL,

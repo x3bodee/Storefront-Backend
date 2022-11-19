@@ -1,4 +1,4 @@
-import db from '../helpers/db';
+import db from '../helper/db';
 import bcrypt from 'bcrypt';
 
   export type User = {

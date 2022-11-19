@@ -1,7 +1,7 @@
-import db from '../helpers/db';
+import db from '../helper/db';
 import format from 'pg-format';
-import { convert_ids_to_sql_list, check_product_list,  } from '../helpers/helper_for_product_model';
-import { compine_order_lines_after } from '../helpers/compine_order_lines';
+import { convert_ids_to_sql_list, check_product_list,  } from '../helper/helper_for_product_model';
+import { compine_order_lines_after } from '../helper/compine_order_lines';
 import { Product } from './Product.model';
 
 // order_id SERIAL PRIMARY KEY,
