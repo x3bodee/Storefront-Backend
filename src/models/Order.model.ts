@@ -49,6 +49,8 @@ export type Order = {
           const sql = 'select o.order_id, o.status, o.user_id, o.created_at, p.product_id, p.product_name, p.price, p.category as category_id, c.category_name, op.order_quantity as product_quantity from order_product op inner join orders o on op.order_id = o.order_id inner join product p on op.product_id = p.product_id inner join category c on c.category_id = p.category where o.user_id = ($1) AND status = True order by o.order_id;';
           const result = await conn.query(sql,[id]);
           const final_result = compine_order_lines_after(result.rows);
+          console.log(result.rows);
+          console.log(final_result);
           conn.release();
           
           return final_result;

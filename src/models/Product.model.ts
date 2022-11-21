@@ -13,6 +13,7 @@ export type Product = {
     category: number;
     category_name?: string;
     created_at?: Date;
+    count?:string;
 
   };
 
@@ -64,7 +65,7 @@ export type Product = {
         try {
          
           const conn = await db.connect();
-          const sql = 'select p.product_id, p.product_name, p.price, c count(op.product_id) from order_product op left join product p on order_product.product_id = product.product_id group by product.product_id ORDER BY COUNT(order_product.product_id) DESC limit (5);';
+          const sql = 'select p.product_id, p.product_name, p.price, p.category, count(op.product_id)  from order_product as op left join product as p on op.product_id = p.product_id group by p.product_id ORDER BY COUNT(op.product_id) DESC limit (5);';
           const result = await conn.query(sql);
           conn.release();
     

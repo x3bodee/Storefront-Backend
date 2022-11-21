@@ -126,7 +126,7 @@ var ProductModel = /** @class */ (function () {
                         return [4 /*yield*/, db_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'select p.product_id, p.product_name, p.price, c count(op.product_id) from order_product op left join product p on order_product.product_id = product.product_id group by product.product_id ORDER BY COUNT(order_product.product_id) DESC limit (5);';
+                        sql = 'select p.product_id, p.product_name, p.price, p.category, count(op.product_id)  from order_product as op left join product as p on op.product_id = p.product_id group by p.product_id ORDER BY COUNT(op.product_id) DESC limit (5);';
                         return [4 /*yield*/, conn.query(sql)];
                     case 2:
                         result = _a.sent();

@@ -55,9 +55,46 @@ describe('Category Model', function () {
                 case 0: return [4 /*yield*/, category.create("Test Category")];
                 case 1:
                     result = _a.sent();
-                    expect({ category_id: result.category_id,
-                        category_name: result.category_name })
+                    expect({ category_id: 8, category_name: result.category_name })
                         .toEqual({ category_id: 8, category_name: "Test Category" });
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('index method should display all category', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result, result2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, category.index()];
+                case 1:
+                    result = _a.sent();
+                    result2 = result.map(function (e) {
+                        return { category_id: e.category_id, category_name: e.category_name };
+                    });
+                    expect(result2)
+                        .toEqual([{ category_id: 1, category_name: 'Entertainment' },
+                        { category_id: 2, category_name: 'Beauty' },
+                        { category_id: 3, category_name: 'Sport' },
+                        { category_id: 4, category_name: 'Books' },
+                        { category_id: 5, category_name: 'Health' },
+                        { category_id: 6, category_name: 'Electronics' },
+                        { category_id: 7, category_name: 'Toys' },
+                        { category_id: 8, category_name: 'Test Category' }
+                    ]);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('show method should display one specific category id = 1', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, category.show(1)];
+                case 1:
+                    result = _a.sent();
+                    // this obj only to remove the crated_at because it's not a fixed date
+                    expect({ category_id: result.category_id, category_name: result.category_name })
+                        .toEqual({ category_id: 1, category_name: 'Entertainment' });
                     return [2 /*return*/];
             }
         });
