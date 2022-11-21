@@ -1,13 +1,13 @@
 import { CreatedOrder,Order } from '../models/Order.model';
 
 function getIndex (orders:Order[],id:number):number{
+    let result:number = -1;
+    if(!orders.length) return result;
     
-    if(!orders.length) return -1;
-
     orders.forEach((e,i)=>{
-        if(e.order_id === id) return i;
+        if(e.order_id === id) result= i;
     })
-    return -1;
+    return result;
 }
 
 export  function compine_order_lines_after(list:CreatedOrder[]):Order[]{
