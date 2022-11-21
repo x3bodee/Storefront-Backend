@@ -10,8 +10,7 @@
     "node": "nodemon -e ts -w ./src -x npm run watch:serve",
     "watch:serve": "ts-node src/index.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "ENV=test && npx tsc && db-migrate db:create test && db-migrate --env test up && jasmine && db-migrate db:drop test",
-    "test2": "npm run build && npm run jasmine",
+    "test": "ENV=test && npx tsc && db-migrate db:create test && db-migrate up test && jasmine && db-migrate reset && db-migrate db:drop test",
     "tsc": "tsc"
   },
   "author": "Udacity",
