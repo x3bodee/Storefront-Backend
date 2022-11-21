@@ -50,7 +50,8 @@ ERROR: {
 
 - [X] Show : [GET]
 ```
-this end point will  accepte one arg (product_id) and it's going to return this product data if it's available.
+this end point will  accepte one arg (product_id) and it's going to return this product 
+data if it's available.
 *** product_id is mandatory ***
 
 URL : 'http://localhost:PORT/api/product/5'
@@ -69,7 +70,8 @@ Unsuccessful: {
 
 - [X] Create [token required]: [POST]
 ```
-this end point will accepte three arg via post method (product_name, price and category) and it's going to return the new created product data if it's success.
+this end point will accepte three arg via post method (product_name, price and category) and 
+it's going to return the new created product data if it's success.
 *** product_name, price and category is mandatory fields ***
 
 URL : 'http://localhost:PORT/api/product'
@@ -136,7 +138,8 @@ Success: {
 ```
 - [X] Show [token required] : [GET]
 ```
-this end point will  accepte one arg (user_id) and it's going to return this user data if it's available.
+this end point will  accepte one arg (user_id) and it's going to return this user 
+data if it's available.
 *** user_id is mandatory ***
 
 URL : 'http://localhost:PORT/api/user/5'
@@ -154,14 +157,17 @@ Unsuccessful: {
 ```
 - [X] signup (return token): [POST]
 ```
-this end point will accepte four arg via post method (first_name, last_name, email and passowrd) and it's going to return a token if it's success.
+this end point will accepte four arg via post method (first_name, last_name, email and passowrd) 
+and it's going to return a token if it's success.
 *** first_name, last_name, email and passowrd is mandatory ***
 
 URL : 'http://localhost:PORT/api/user'
 Success: {
     "status": true,
     "msg": "Done",
-    "token": "eyJhbGciOsdvdsnR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlsdsdfsdaXJzdF9uYW1lIjoiMTIzNCIsImxhc3RfbmFtZSI6IjEyMzQiLCJlbWFpbCI6ImFiY0BiYmJ0LmNjIiwiY3JlYXRlZF9hdCI6IjIwMjItMTEtMjFUwefwe#%f556Tk6NTguMTk2WiJ9LCJpYXQiOjE2NjkwNjE5OTgsImV4cCI6MTY2OTY2Njc5OH0.hRyRd9lwGh7gh_giVki3fgweyogYQBR2qtyVEGQ7WYo"
+    "token": "eyJhbGciOsdvdsnR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlsdsdfsdaXJzdF9uYW1lIjoiMTIzNCIsImxhc3RfbmFtZSI6IjEyMzQiLCJlbWFpbCI6ImFiY
+    0BiYmJ0LmNjIiwiY3JlYXRlZF9hdCI6IjIwMjItMTEtMjFUwefwe#%f556Tk6NTguMTk2WiJ9LCJpYXQiOjE2N
+    jkwNjE5OTgsImV4cCI6MTY2OTY2Njc5OH0.hRyRd9lwGh7gh_giVki3fgweyogYQBR2qtyVEGQ7WYo"
 }
 
 in thiss case I did not send email for
@@ -173,14 +179,17 @@ Unsuccessful: {
 ```
 - [X] signin (return token): [POST]
 ```
-this end point will accepte two arg via post method (email and passowrd) and it's going to return a token if it's loged in successfully.
+this end point will accepte two arg via post method (email and passowrd) and it's going 
+to return a token if it's loged in successfully.
 *** email and passowrd is mandatory ***
 
 URL : 'http://localhost:PORT/api/user/signin'
 Success: {
     "status": true,
     "msg": "Done",
-    "token": "eyJhbGciOsdvdsnR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlsdsdfsdaXJzdF9uYW1lIjoiMTIzNCIsImxhc3RfbmFtZSI6IjEyMzQiLCJlbWFpbCI6ImFiY0BiYmJ0LmNjIiwiY3JlYXRlZF9hdCI6IjIwMjItMTEtMjFUwefwe#%f556Tk6NTguMTk2WiJ9LCJpYXQiOjE2NjkwNjE5OTgsImV4cCI6MTY2OTY2Njc5OH0.hRyRd9lwGh7gh_giVki3fgweyogYQBR2qtyVEGQ7WYo"
+    "token": "eyJhbGciOsdvdsnR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlsdsdfsdaXJzdF9uYW1lIjoiMTIzNCIsImxhc3RfbmFtZSI6IjEyMzQiLCJlbWFpbCI6ImFiY0Bi
+    YmJ0LmNjIiwiY3JlYXRlZF9hdCI6IjIwMjItMTEtMjFUwefwe#%f556Tk6NTguMTk2WiJ9LCJpYXQiOjE2NjkwN
+    jE5OTgsImV4cCI6MTY2OTY2Njc5OH0.hRyRd9lwGh7gh_giVki3fgweyogYQBR2qtyVEGQ7WYo"
 }
 
 in thiss case I did not send email for
@@ -194,7 +203,9 @@ Unsuccessful: {
 #### Orders
 - [X] Create Order [token required] : [POST]
 ```
-this end point will accepte two arg via post method (user_id and product_list['product_id','quantity']) and it's going to return a an order if it's was created successfully.
+this end point will accepte two arg via post method 
+(user_id and product_list['product_id','quantity']) and it's going to return a an 
+order if it's was created successfully.
 *** user_id and product_list['product_id','quantity'] is mandatory ***
 
 URL : 'http://localhost:PORT/api/order'
@@ -214,7 +225,8 @@ Unsuccessful: {
 ```
 - [X] Current Order by user (args: user id)[token required] : [GET]
 ```
-this end point will not accepte any args (it's going to take the args from the token dirictly) and it's going to return active orders[] as an array for the user in the token.
+this end point will not accepte any args (it's going to take the args from the token dirictly)
+ and it's going to return active orders[] as an array for the user in the token.
 URL : 'http://localhost:PORT/api/order/currentOrdersByUser'
 Success: {
     "status": true,
@@ -230,7 +242,8 @@ Success: {
 ```
 - [X] Completed Orders by user (args: user id)[token required] : [GET]
 ```
-this end point will not accepte any args (it's going to take the args from the token dirictly) and it's going to return completed orders[] as an array for the user in the token.
+this end point will not accepte any args (it's going to take the args from the token dirictly)
+ and it's going to return completed orders[] as an array for the user in the token.
 URL : 'http://localhost:PORT/api/order/completedOrdersByUser'
 Success: {
     "status": true,
@@ -265,7 +278,8 @@ Success: {
 ```
 - [X] Show : [GET]
 ```
-this end point will accepte one arg (category_id) and it's going to return categores[] as an array.
+this end point will accepte one arg (category_id) and it's going to return 
+categores[] as an array.
 
 *** category_id is mandatory ***
 
@@ -284,7 +298,8 @@ Success: {
 ```
 - [X] Create [token required] : [POST]
 ```
-this end point will accepte one arg via post method (category_name) and it's going to return a a category if it's was created successfully.
+this end point will accepte one arg via post method (category_name) and it's going 
+to return a a category if it's was created successfully.
 *** category_name is mandatory ***
 
 URL : 'http://localhost:PORT/api/category'
@@ -323,9 +338,13 @@ Unsuccessful: {
 
 #### Orders
 there is two types for the order part: 
-because of the M:N relation between the order and the product I created a table to split this M:N relationship.
-so I am using CreatedOrder type to store eatch product belong to whiech order and the status of this line.
-CreatedOrder type represent the lines of the order where the order is the header part and the CreatedOrder is the line part where i store the product details of each product ordered in this order with the quantity , price and category of the product.
+because of the M:N relation between the order and the product I created a table 
+to split this M:N relationship.
+so I am using CreatedOrder type to store eatch product belong to whiech order and 
+the status of this line.
+CreatedOrder type represent the lines of the order where the order is the header part 
+and the CreatedOrder is the line part where i store the product details of each product 
+ordered in this order with the quantity , price and category of the product.
 
 
 ### CreatedOrder
@@ -340,7 +359,8 @@ CreatedOrder type represent the lines of the order where the order is the header
 - category_id
 - category_name
 
-so basiclay, I using CreatedOrder to store the order and the product in the same record then before returning the result to the user I will reorder the order shape to match order_id, user_id, products_data_list(where I will store the info of each product in this order).
+so basiclay, I using CreatedOrder to store the order and the product in the same record 
+then before returning the result to the user I will reorder the order shape to match order_id, user_id, products_data_list(where I will store the info of each product in this order).
 
 
 ### Order
