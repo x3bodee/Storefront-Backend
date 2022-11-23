@@ -18,3 +18,5 @@ app.use('/api', api);
 app.listen(process.env.PORT, function () {
     console.log(`app running on port: ${PORT}`);
 })
+
+export default app;
