@@ -1,6 +1,5 @@
 import supertest from 'supertest';
 import app from '../../../index';
-import { Product } from '../../../models/Product.model';
 
 const request = supertest(app);
 const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQWJkdWxsYWgiLCJsYXN0X25hbWUiOiJCYXNoZWVyIiwiZW1haWwiOiJhYkBiYmIuY2NjIiwiY3JlYXRlZF9hdCI6IjIwMjItMTEtMjNUMjA6NDI6MDUuOTgyWiJ9LCJpYXQiOjE2NjkyMzYxNTYsImV4cCI6MTY2OTg0MDk1Nn0.U4BJYtvPNkAlKEr_i0NO1iFYcf7l2eeTcgbssLQc9NQ';
