@@ -43,18 +43,28 @@ var supertest_1 = __importDefault(require("supertest"));
 var index_1 = __importDefault(require("../../../index"));
 var request = (0, supertest_1.default)(index_1.default);
 var TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQWJkdWxsYWgiLCJsYXN0X25hbWUiOiJCYXNoZWVyIiwiZW1haWwiOiJhYkBiYmIuY2NjIiwiY3JlYXRlZF9hdCI6IjIwMjItMTEtMjNUMjA6NDI6MDUuOTgyWiJ9LCJpYXQiOjE2NjkyMzYxNTYsImV4cCI6MTY2OTg0MDk1Nn0.U4BJYtvPNkAlKEr_i0NO1iFYcf7l2eeTcgbssLQc9NQ';
-describe('GET /category ', function () {
-    it('expect index route response status to be 200 and categores list length equal 8', function () { return __awaiter(void 0, void 0, void 0, function () {
+describe('POST /product ', function () {
+    it('expect create route response status to be 200 and new product_id equal 8', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.get('/api/category')];
+                    return [4 /*yield*/, request.post('/api/product')
+                            .send({
+                            product_name: "test product",
+                            price: 20,
+                            category: 3
+                        })
+                            .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect(response.body.categores.length).toEqual(8);
+                    expect({ product_id: response.body.product.product_id,
+                        product_name: response.body.product.product_name,
+                        price: response.body.product.price,
+                        category: response.body.product.category
+                    }).toEqual({ product_id: 8, product_name: "test product", price: 20, category: 3 });
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -64,17 +74,23 @@ describe('GET /category ', function () {
             }
         });
     }); });
-    it('expect show:8 route response status to be 200 and category_name equal Test Category', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('expect create product route response status to be 400 and error msg to be product_name is mandatory', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response, err_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.get('/api/category/8')];
+                    return [4 /*yield*/, request.post('/api/product')
+                            .send({
+                            price: 20,
+                            category: 3
+                        })
+                            .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
-                    expect(response.status).toBe(200);
-                    expect(response.body.categores[7].category_name).toEqual("Test Category");
+                    expect(response.status).toBe(400);
+                    expect({ err: response.body.err })
+                        .toEqual({ err: "Error: Error: product_name is mandatory for creating the product" });
                     return [3 /*break*/, 3];
                 case 2:
                     err_2 = _a.sent();
@@ -85,26 +101,82 @@ describe('GET /category ', function () {
         });
     }); });
 });
-describe('POST /category ', function () {
-    it('expect response status to be 200 and new id equal 9', function () { return __awaiter(void 0, void 0, void 0, function () {
+describe('GET /product ', function () {
+    it('expect index route response status to be 200 and total #No. of products is equal to 8', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response, err_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/category')
-                            .send({ category_name: "PC" })
-                            .auth(TOKEN, { type: 'bearer' })];
+                    return [4 /*yield*/, request.get('/api/product')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect({ category_id: response.body.categores.category_id,
-                        category_name: response.body.categores.category_name
-                    }).toEqual({ category_id: 9, category_name: "PC" });
+                    expect(response.body.products.length).toEqual(8);
                     return [3 /*break*/, 3];
                 case 2:
                     err_3 = _a.sent();
                     console.log(err_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); });
+    it("expect show:5 route response status to be 200 and product name is 'Vitamin D ...'", function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response, err_4;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, request.get('/api/product/5')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    expect(response.body.product.product_name).toEqual("Vitamin D & B12 Vitamin Supplements for Adults & Kids | Supports Bone Health |");
+                    return [3 /*break*/, 3];
+                case 2:
+                    err_4 = _a.sent();
+                    console.log(err_4);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); });
+    it('expect top5 route response status to be 200 and top5 list length is 5', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response, err_5;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, request.get('/api/product/top5')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    expect(response.body.products.length).toEqual(5);
+                    return [3 /*break*/, 3];
+                case 2:
+                    err_5 = _a.sent();
+                    console.log(err_5);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); });
+    it("expect productsByCategory:3 route response status to be 200 and the total #No. of products is 2", function () { return __awaiter(void 0, void 0, void 0, function () {
+        var response, err_6;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, request.get('/api/product/productsByCategory/3')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    expect(response.body.products.length).toEqual(2);
+                    return [3 /*break*/, 3];
+                case 2:
+                    err_6 = _a.sent();
+                    console.log(err_6);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
