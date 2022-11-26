@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import express, { Request, Response } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import api from './routes/index';
 import cors from 'cors';
@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 
 app.use('/api', api);
 
-
-
 app.listen(process.env.PORT, function () {
-    console.log(`app running on port: ${PORT}`);
-})
+  console.log(`app running on port: ${PORT}`);
+});
+
+export default app;

@@ -1,10 +1,9 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { index } from '../../controllers/categores/index';
 import { show } from '../../controllers/categores/show';
 import { create } from '../../controllers/categores/create';
 import { check_token } from '../../middleware/check_token';
 const router = express.Router();
-
 
 router.get('/', index);
 router.get('/:id', show);
