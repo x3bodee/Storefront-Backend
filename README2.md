@@ -13,6 +13,7 @@ Your application must make use of the following libraries:
 - jsonwebtoken from npm for working with JWTs
 - jasmine from npm for testing
 
+
 ## Steps to Completion
 
 ### 1. Plan to Meet Requirements

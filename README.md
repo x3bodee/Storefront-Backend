@@ -1,13 +1,27 @@
 # Storefront Backend Project
 ## Run:
+to install package
 ``` 
 npm install
+```
+
+.env file setup:
+```
+POSTGRES_HOST= ex: 127.0.0.1
+POSTGRES_DB= ex: e_commerce
+POSTGRES_TEST_DB= ex: test
+POSTGRES_USER= ex: admin
+POSTGRES_PASSWORD= ex: adm123
+PORT= ex: 5005
+PEPPER= 21f3cwqcqw@dfever
+TOKEN= qwfdqw12r12dqwf
+ENV=dev
 ``` 
 to run the test run 
 but before running the test you need to drop any database with the test name from your workspace.
 ``` 
 in pg terminal run : drop database test;
-then
+then from the code terminal run:
 1) db-migrate reset 
 2) npm run test
 ``` 
@@ -17,6 +31,9 @@ this will run nodemon
 ``` 
 npm run node
 ``` 
+
+## Database Schema
+![Database Schema](schema.png)
 
 ## API Endpoints
 
@@ -320,21 +337,21 @@ Unsuccessful: {
 
 ## Data Shapes
 #### Product
-- product_id
-- product_name
-- price
-- category
-- category_name? : in case of returning the product I will join the category id to it's description.
-- created_at? : crated by defulat at creation time.
-- count? : in case of top5 to return how many times it's was orderd.
+- product_id :number
+- product_name :string
+- price :number
+- category :number
+- category_name? :string : in case of returning the product I will join the category id to it's description.
+- created_at? :date : crated by defulat at creation time.
+- count? :number : in case of top5 to return how many times it's was orderd.
 
 #### User
-- user_id
-- firstName
-- lastName
-- email : UNIQE so you will be signing in by the email.
-- password
-- created_at? : crated by defulat at creation time.
+- user_id :number
+- firstName :string
+- lastName :string
+- email :string : UNIQE so you will be signing in by the email.
+- password :string
+- created_at? :date : crated by defulat at creation time.
 
 #### Orders
 there is two types for the order part: 
@@ -348,16 +365,16 @@ ordered in this order with the quantity , price and category of the product.
 
 
 ### CreatedOrder
-- order_id
-- status ( active : false or complete : true )
-- user_id
-- created_at : crated by defulat at creation time.
-- product_id
-- product_name
-- product_quantity
-- price
-- category_id
-- category_name
+- order_id :number
+- status  :boolean ( active : false or complete : true )
+- user_id :number
+- created_at :date : crated by defulat at creation time.
+- product_id :number
+- product_name :string
+- product_quantity :number
+- price :number
+- category_id :number
+- category_name :string
 
 so basiclay, I using CreatedOrder to store the order and the product in the same record 
 then before returning the result to the user I will reorder the order shape to match order_id, user_id, products_data_list(where I will store the info of each product in this order).
@@ -371,17 +388,17 @@ then before returning the result to the user I will reorder the order shape to m
     product_name, category_name, price,
     quantity, product_id, category_id
     }] // NOTE: this where I will put the products data of the order before I return the result.
-- status? : by default the order status will be false. (whiche is equalt to active).
-- created_at? : crated by defulat at creation time.
+- status?:boolean, : by default the order status will be false. (whiche is equalt to active).
+- created_at?:Date : crated by defulat at creation time.:number
 
 #### Category
-- category_id 
-- category_name
-- created_at : crated by defulat at creation time.
+- category_id :number
+- category_name:string
+- created_at:date : crated by defulat at creation time.
 
 this will represent the table where I will breake the M:N relation between Order and Product tables.
 #### order_product
-- order_id
-- product_id
-- quantity
-- created_at
+- order_id:number
+- product_id:number
+- quantity:number
+- created_at:date
