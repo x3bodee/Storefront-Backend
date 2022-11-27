@@ -105,7 +105,7 @@ var UserModel = /** @class */ (function () {
                     case 1:
                         conn = _a.sent();
                         console.log(user);
-                        sql = "select email from users where email = ($1);";
+                        sql = 'select email from users where email = ($1);';
                         return [4 /*yield*/, conn.query(sql, [user.email])];
                     case 2:
                         check_email = _a.sent();
@@ -113,7 +113,12 @@ var UserModel = /** @class */ (function () {
                             throw new Error("Error: This email already has an account");
                         hashedPassword = bcrypt_1.default.hashSync(user.password + PEPPER, 12);
                         sql2 = 'insert into users (first_name,last_name,email,password) values ($1,$2,$3,$4) RETURNING *;';
-                        return [4 /*yield*/, conn.query(sql2, [user.first_name, user.last_name, user.email, hashedPassword])];
+                        return [4 /*yield*/, conn.query(sql2, [
+                                user.first_name,
+                                user.last_name,
+                                user.email,
+                                hashedPassword,
+                            ])];
                     case 3:
                         result = _a.sent();
                         conn.release();

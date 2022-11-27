@@ -57,12 +57,15 @@ var currentOrdersByUser = function (req, res) { return __awaiter(void 0, void 0,
             case 2:
                 orders = _a.sent();
                 if (!orders.length)
-                    return [2 /*return*/, res.status(200).json({ status: true, msg: 'there is no pending orders for this user' })];
+                    return [2 /*return*/, res.status(200).json({
+                            status: true,
+                            msg: 'there is no pending orders for this user',
+                        })];
                 return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', result: orders })];
             case 3:
                 error_1 = _a.sent();
                 console.log('error in order currentOrdersByUser controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

@@ -7,7 +7,7 @@ exports.check_token = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var TOKEN = process.env.TOKEN;
 function check_token(req, res, next) {
-    console.log("###### FROM THE MIDDLEWARE ######");
+    console.log('###### FROM THE MIDDLEWARE ######');
     console.log(req.headers.authorization);
     try {
         if (!req.headers.authorization)
@@ -23,13 +23,25 @@ function check_token(req, res, next) {
         next();
     }
     catch (err) {
-        var error = err + "";
+        var error = (err + '');
         if (error.includes('Token is required!!'))
-            return res.status(401).json({ status: false, msg: "Token is required", err: "ERROR: Token is required" });
+            return res.status(401).json({
+                status: false,
+                msg: 'Token is required',
+                err: 'ERROR: Token is required',
+            });
         if (err instanceof jsonwebtoken_1.default.JsonWebTokenError)
-            return res.status(401).json({ status: false, msg: "Invalid Token", err: "ERROR: Invalid JWT Token" });
+            return res.status(401).json({
+                status: false,
+                msg: 'Invalid Token',
+                err: 'ERROR: Invalid JWT Token',
+            });
         if (error.includes('Invalid Token'))
-            return res.status(401).json({ status: false, msg: "Invalid Token", err: "ERROR: Invalid Token" });
+            return res.status(401).json({
+                status: false,
+                msg: 'Invalid Token',
+                err: 'ERROR: Invalid Token',
+            });
         throw new Error("".concat(err));
     }
 }

@@ -102,7 +102,7 @@ var OrderModel = /** @class */ (function () {
     };
     OrderModel.prototype.create = function (user_id, products_list) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, converted_id_list, converted_quantites_list, sql1, select_result, list, insert_order_sql, insert_order_result_1, order_product, insert_order_products_sql, insert_order_products_result, err_3;
+            var conn, converted_id_list, sql1, select_result, list, insert_order_sql, insert_order_result_1, order_product, insert_order_products_sql, insert_order_products_result, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, db_1.default.connect()];
@@ -112,13 +112,12 @@ var OrderModel = /** @class */ (function () {
                     case 2:
                         _a.trys.push([2, 8, , 10]);
                         converted_id_list = (0, helper_for_product_model_1.convert_ids_to_sql_list)(products_list);
-                        converted_quantites_list = products_list.map(function (e) { return e[1]; });
                         sql1 = 'select * from product where product_id = ANY ($1);';
                         return [4 /*yield*/, conn.query(sql1, [converted_id_list])];
                     case 3:
                         select_result = _a.sent();
                         list = select_result.rows;
-                        console.log("check_product_list: ", (0, helper_for_product_model_1.check_product_list)(list, converted_id_list));
+                        console.log('check_product_list: ', (0, helper_for_product_model_1.check_product_list)(list, converted_id_list));
                         if (!(0, helper_for_product_model_1.check_product_list)(list, converted_id_list))
                             throw new Error("Error: there is a wrong product in the list!!");
                         // throw new Error(`Error: to stop`);
@@ -131,7 +130,9 @@ var OrderModel = /** @class */ (function () {
                     case 5:
                         insert_order_result_1 = _a.sent();
                         console.log(insert_order_result_1.rows);
-                        order_product = products_list.map(function (e) { return e.concat(insert_order_result_1.rows[0].order_id); });
+                        order_product = products_list.map(function (e) {
+                            return e.concat(insert_order_result_1.rows[0].order_id);
+                        });
                         console.log(order_product);
                         insert_order_products_sql = 'insert into order_product (product_id, order_quantity, order_id) values %L';
                         return [4 /*yield*/, conn.query((0, pg_format_1.default)(insert_order_products_sql, order_product))];

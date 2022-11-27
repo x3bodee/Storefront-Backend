@@ -61,8 +61,7 @@ describe('Product Model', function () {
                 case 0: return [4 /*yield*/, product.productsByCategory(5)];
                 case 1:
                     result = _a.sent();
-                    expect(result.length)
-                        .toEqual(1);
+                    expect(result.length).toEqual(1);
                     return [2 /*return*/];
             }
         });
@@ -74,43 +73,42 @@ describe('Product Model', function () {
                 case 0: return [4 /*yield*/, product.top5()];
                 case 1:
                     result = _a.sent();
-                    expect(result)
-                        .toEqual([
+                    expect(result).toEqual([
                         {
                             product_id: 3,
                             product_name: 'EVS Sports TP199 Knee / Shin Guard, (Black / Hi-Viz Yellow, Large/X-Large)',
                             price: 99.99,
                             category: 3,
-                            count: '3'
+                            count: '3',
                         },
                         {
                             product_id: 2,
                             product_name: 'Meaningful Beauty 5-Piece Starter Kit, Gift Set, various color',
                             price: 73.2,
                             category: 2,
-                            count: '3'
+                            count: '3',
                         },
                         {
                             product_id: 1,
                             product_name: 'Sunny Days Entertainment Bath Time Sing Along Play Center',
                             price: 9.99,
                             category: 1,
-                            count: '3'
+                            count: '3',
                         },
                         {
                             product_id: 6,
                             product_name: 'JBL Vibe 200TWS True Wireless Earbuds - Black',
                             price: 25.99,
                             category: 6,
-                            count: '2'
+                            count: '2',
                         },
                         {
                             product_id: 5,
                             product_name: 'Vitamin D & B12 Vitamin Supplements for Adults & Kids | Supports Bone Health |',
                             price: 10,
                             category: 5,
-                            count: '2'
-                        }
+                            count: '2',
+                        },
                     ]);
                     return [2 /*return*/];
             }

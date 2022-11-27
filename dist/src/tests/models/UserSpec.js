@@ -55,11 +55,15 @@ describe('User Model', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, user.signup({ first_name: 'ali', last_name: 'ahamed', password: '1234', email: 'abcd@efg.hi' })];
+                case 0: return [4 /*yield*/, user.signup({
+                        first_name: 'ali',
+                        last_name: 'ahamed',
+                        password: '1234',
+                        email: 'abcd@efg.hi',
+                    })];
                 case 1:
                     result = _a.sent();
-                    expect({ user_id: result.user_id })
-                        .toEqual({ user_id: 6 });
+                    expect({ user_id: result.user_id }).toEqual({ user_id: 6 });
                     return [2 /*return*/];
             }
         });
@@ -71,8 +75,7 @@ describe('User Model', function () {
                 case 0: return [4 /*yield*/, user.signin('abcd@efg.hi', '1234')];
                 case 1:
                     result = _a.sent();
-                    expect(result === null || result === void 0 ? void 0 : result.user_id)
-                        .toEqual(6);
+                    expect(result === null || result === void 0 ? void 0 : result.user_id).toEqual(6);
                     return [2 /*return*/];
             }
         });

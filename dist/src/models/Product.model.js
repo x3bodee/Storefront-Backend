@@ -150,13 +150,13 @@ var ProductModel = /** @class */ (function () {
                         return [4 /*yield*/, db_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = "select category_id from category where category_id = ($1);";
+                        sql = 'select category_id from category where category_id = ($1);';
                         return [4 /*yield*/, conn.query(sql, [category])];
                     case 2:
                         check_if_category_exist = _a.sent();
                         if (!check_if_category_exist.rows[0])
                             throw new Error("Error: The category you are using is wrong");
-                        sql1 = "select product_name, category from product where product_name = ($1) AND category = ($2);";
+                        sql1 = 'select product_name, category from product where product_name = ($1) AND category = ($2);';
                         return [4 /*yield*/, conn.query(sql1, [name, category])];
                     case 3:
                         select_result = _a.sent();

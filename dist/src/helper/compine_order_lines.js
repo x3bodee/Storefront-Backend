@@ -31,9 +31,9 @@ function compine_order_lines_after(list) {
                         price: e.price,
                         quantity: e.product_quantity,
                         product_id: e.product_id,
-                        category_id: e.category_id
-                    }
-                ]
+                        category_id: e.category_id,
+                    },
+                ],
             });
         }
         else {
@@ -43,7 +43,7 @@ function compine_order_lines_after(list) {
                 price: e.price,
                 quantity: e.product_quantity,
                 product_id: e.product_id,
-                category_id: e.category_id
+                category_id: e.category_id,
             });
         } // end of the else
     });

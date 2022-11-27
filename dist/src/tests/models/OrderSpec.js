@@ -52,11 +52,14 @@ describe('Order Model', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, order.create(1, [[1, 1], [3, 2], [4, 1]])];
+                case 0: return [4 /*yield*/, order.create(1, [
+                        [1, 1],
+                        [3, 2],
+                        [4, 1],
+                    ])];
                 case 1:
                     result = _a.sent();
-                    expect({ order_id: result.order_id })
-                        .toEqual({ order_id: 7 });
+                    expect({ order_id: result.order_id }).toEqual({ order_id: 7 });
                     return [2 /*return*/];
             }
         });
@@ -68,8 +71,7 @@ describe('Order Model', function () {
                 case 0: return [4 /*yield*/, order.currentOrdersByUser(1)];
                 case 1:
                     result = _a.sent();
-                    expect(result[0].status)
-                        .toEqual(false);
+                    expect(result[0].status).toEqual(false);
                     return [2 /*return*/];
             }
         });
@@ -81,8 +83,7 @@ describe('Order Model', function () {
                 case 0: return [4 /*yield*/, order.completedOrdersByUser(1)];
                 case 1:
                     result = _a.sent();
-                    expect(result[0].status)
-                        .toEqual(true);
+                    expect(result[0].status).toEqual(true);
                     return [2 /*return*/];
             }
         });

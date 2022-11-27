@@ -40,7 +40,9 @@ exports.show = void 0;
 var User_model_1 = require("../../models/User.model");
 // show all users
 var User = new User_model_1.UserModel();
-var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var show = function (
+// eslint-disable-next-line @typescript-eslint/ban-types
+req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, user, error_1, err;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -57,12 +59,14 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
             case 2:
                 user = _a.sent();
                 if (!user)
-                    return [2 /*return*/, res.status(200).json({ status: true, msg: 'there is no such a user' })];
+                    return [2 /*return*/, res
+                            .status(200)
+                            .json({ status: true, msg: 'there is no such a user' })];
                 return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', user: user })];
             case 3:
                 error_1 = _a.sent();
                 console.log('error in user index controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

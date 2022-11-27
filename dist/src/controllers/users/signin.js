@@ -63,18 +63,21 @@ var signin = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 user = _b.sent();
                 if (user === null)
                     throw new Error("Error: Wrong user information");
-                token = jsonwebtoken_1.default.sign({ user: { id: user === null || user === void 0 ? void 0 : user.user_id,
+                token = jsonwebtoken_1.default.sign({
+                    user: {
+                        id: user === null || user === void 0 ? void 0 : user.user_id,
                         first_name: user === null || user === void 0 ? void 0 : user.first_name,
                         last_name: user === null || user === void 0 ? void 0 : user.last_name,
                         email: user === null || user === void 0 ? void 0 : user.email,
-                        created_at: user === null || user === void 0 ? void 0 : user.created_at
-                    } }, TOKEN, { expiresIn: "7d" } // it will be expired after 7 days 
+                        created_at: user === null || user === void 0 ? void 0 : user.created_at,
+                    },
+                }, TOKEN, { expiresIn: '7d' } // it will be expired after 7 days
                 );
                 return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', token: token })];
             case 3:
                 error_1 = _b.sent();
                 console.log('error in user in controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

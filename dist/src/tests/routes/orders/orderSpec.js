@@ -50,18 +50,16 @@ describe('POST /order ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/order')
-                            .send({
-                            first_name: "test product",
+                    return [4 /*yield*/, request.post('/api/order').send({
+                            first_name: 'test product',
                             last_name: 20,
                             password: '1234',
-                            email: 'abcd@poi.co'
+                            email: 'abcd@poi.co',
                         })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(401);
-                    expect(response.body.msg)
-                        .toEqual('Token is required');
+                    expect(response.body.msg).toEqual('Token is required');
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -77,17 +75,21 @@ describe('POST /order ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/order')
+                    return [4 /*yield*/, request
+                            .post('/api/order')
                             .send({
                             user_id: 5,
-                            products_list: [[1, 2], [3, 1], [5, 1]]
+                            products_list: [
+                                [1, 2],
+                                [3, 1],
+                                [5, 1],
+                            ],
                         })
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect(response.body.msg)
-                        .toEqual("Done");
+                    expect(response.body.msg).toEqual('Done');
                     return [3 /*break*/, 3];
                 case 2:
                     err_2 = _a.sent();
@@ -105,7 +107,8 @@ describe('GET /order', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.get('/api/order/completedOrdersByUser')
+                    return [4 /*yield*/, request
+                            .get('/api/order/completedOrdersByUser')
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
@@ -120,13 +123,14 @@ describe('GET /order', function () {
             }
         });
     }); });
-    it("expect currentOrdersByUser route response status to be 200 and total #No. of orders is equal to 1", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('expect currentOrdersByUser route response status to be 200 and total #No. of orders is equal to 1', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response, err_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.get('/api/order/currentOrdersByUser')
+                    return [4 /*yield*/, request
+                            .get('/api/order/currentOrdersByUser')
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();

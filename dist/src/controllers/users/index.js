@@ -54,12 +54,14 @@ var index = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
             case 2:
                 users = _a.sent();
                 if (!users.length)
-                    return [2 /*return*/, res.status(200).json({ status: true, msg: 'there is no registered users yet' })];
+                    return [2 /*return*/, res
+                            .status(200)
+                            .json({ status: true, msg: 'there is no registered users yet' })];
                 return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', users: users })];
             case 3:
                 error_1 = _a.sent();
                 console.log('error in user index controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

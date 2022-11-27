@@ -74,7 +74,7 @@ describe('GET /category ', function () {
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect(response.body.categores[7].category_name).toEqual("Test Category");
+                    expect(response.body.categores[7].category_name).toEqual('Test Category');
                     return [3 /*break*/, 3];
                 case 2:
                     err_2 = _a.sent();
@@ -92,15 +92,17 @@ describe('POST /category ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/category')
-                            .send({ category_name: "PC" })
+                    return [4 /*yield*/, request
+                            .post('/api/category')
+                            .send({ category_name: 'PC' })
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect({ category_id: response.body.categores.category_id,
-                        category_name: response.body.categores.category_name
-                    }).toEqual({ category_id: 9, category_name: "PC" });
+                    expect({
+                        category_id: response.body.categores.category_id,
+                        category_name: response.body.categores.category_name,
+                    }).toEqual({ category_id: 9, category_name: 'PC' });
                     return [3 /*break*/, 3];
                 case 2:
                     err_3 = _a.sent();

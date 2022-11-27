@@ -17,9 +17,9 @@ exports.check_if_product_is_missing = check_if_product_is_missing;
 function check_product_list(products, data_list) {
     console.log(products, data_list);
     var flag = true;
-    data_list.forEach(function (e, i) {
-        console.log(products.some((function (ele) { return ele.product_id === e; })));
-        if (products.some((function (ele) { return ele.product_id === e; })))
+    data_list.forEach(function (e) {
+        console.log(products.some(function (ele) { return ele.product_id === e; }));
+        if (products.some(function (ele) { return ele.product_id === e; }))
             '';
         else
             flag = false;

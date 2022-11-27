@@ -57,12 +57,15 @@ var productsByCategory = function (req, res) { return __awaiter(void 0, void 0, 
             case 2:
                 products = _a.sent();
                 if (!products.length)
-                    return [2 /*return*/, res.status(200).json({ status: true, msg: 'There is no products available under this category' })];
+                    return [2 /*return*/, res.status(200).json({
+                            status: true,
+                            msg: 'There is no products available under this category',
+                        })];
                 return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', products: products })];
             case 3:
                 error_1 = _a.sent();
                 console.log('error in product productsByCategory controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

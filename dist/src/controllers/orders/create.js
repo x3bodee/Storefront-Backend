@@ -59,11 +59,13 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 return [4 /*yield*/, Order.create(Number(user_id), products_list)];
             case 2:
                 order = _b.sent();
-                return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', order_id: order.order_id })];
+                return [2 /*return*/, res
+                        .status(200)
+                        .json({ status: true, msg: 'Done', order_id: order.order_id })];
             case 3:
                 error_1 = _b.sent();
                 console.log('error in create order controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

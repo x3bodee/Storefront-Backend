@@ -56,12 +56,14 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
             case 2:
                 category = _a.sent();
                 if (!category)
-                    return [2 /*return*/, res.status(200).json({ status: true, msg: 'there is no such a category' })];
+                    return [2 /*return*/, res
+                            .status(200)
+                            .json({ status: true, msg: 'there is no such a category' })];
                 return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', category: category })];
             case 3:
                 error_1 = _a.sent();
                 console.log('error in category index controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

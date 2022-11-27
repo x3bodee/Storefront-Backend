@@ -58,7 +58,7 @@ var index = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
             case 3:
                 error_1 = _a.sent();
                 console.log('error in category index controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

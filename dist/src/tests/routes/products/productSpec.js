@@ -50,21 +50,28 @@ describe('POST /product ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/product')
+                    return [4 /*yield*/, request
+                            .post('/api/product')
                             .send({
-                            product_name: "test product",
+                            product_name: 'test product',
                             price: 20,
-                            category: 3
+                            category: 3,
                         })
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect({ product_id: response.body.product.product_id,
+                    expect({
+                        product_id: response.body.product.product_id,
                         product_name: response.body.product.product_name,
                         price: response.body.product.price,
-                        category: response.body.product.category
-                    }).toEqual({ product_id: 8, product_name: "test product", price: 20, category: 3 });
+                        category: response.body.product.category,
+                    }).toEqual({
+                        product_id: 8,
+                        product_name: 'test product',
+                        price: 20,
+                        category: 3,
+                    });
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -80,17 +87,19 @@ describe('POST /product ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/product')
+                    return [4 /*yield*/, request
+                            .post('/api/product')
                             .send({
                             price: 20,
-                            category: 3
+                            category: 3,
                         })
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(400);
-                    expect({ err: response.body.err })
-                        .toEqual({ err: "Error: Error: product_name is mandatory for creating the product" });
+                    expect({ err: response.body.err }).toEqual({
+                        err: 'Error: Error: product_name is mandatory for creating the product',
+                    });
                     return [3 /*break*/, 3];
                 case 2:
                     err_2 = _a.sent();
@@ -132,7 +141,7 @@ describe('GET /product ', function () {
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect(response.body.product.product_name).toEqual("Vitamin D & B12 Vitamin Supplements for Adults & Kids | Supports Bone Health |");
+                    expect(response.body.product.product_name).toEqual('Vitamin D & B12 Vitamin Supplements for Adults & Kids | Supports Bone Health |');
                     return [3 /*break*/, 3];
                 case 2:
                     err_4 = _a.sent();
@@ -162,7 +171,7 @@ describe('GET /product ', function () {
             }
         });
     }); });
-    it("expect productsByCategory:3 route response status to be 200 and the total #No. of products is 2", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('expect productsByCategory:3 route response status to be 200 and the total #No. of products is 2', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response, err_6;
         return __generator(this, function (_a) {
             switch (_a.label) {

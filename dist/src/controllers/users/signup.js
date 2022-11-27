@@ -67,18 +67,21 @@ var signup = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 return [4 /*yield*/, User.signup(user)];
             case 2:
                 createed_user = _b.sent();
-                token = jsonwebtoken_1.default.sign({ user: { id: createed_user === null || createed_user === void 0 ? void 0 : createed_user.user_id,
+                token = jsonwebtoken_1.default.sign({
+                    user: {
+                        id: createed_user === null || createed_user === void 0 ? void 0 : createed_user.user_id,
                         first_name: createed_user === null || createed_user === void 0 ? void 0 : createed_user.first_name,
                         last_name: createed_user === null || createed_user === void 0 ? void 0 : createed_user.last_name,
                         email: createed_user === null || createed_user === void 0 ? void 0 : createed_user.email,
-                        created_at: createed_user === null || createed_user === void 0 ? void 0 : createed_user.created_at
-                    } }, TOKEN, { expiresIn: "7d" } // it will be expired after 7 days 
+                        created_at: createed_user === null || createed_user === void 0 ? void 0 : createed_user.created_at,
+                    },
+                }, TOKEN, { expiresIn: '7d' } // it will be expired after 7 days
                 );
                 return [2 /*return*/, res.status(200).json({ status: true, msg: 'Done', token: token })];
             case 3:
                 error_1 = _b.sent();
                 console.log('error in user signup controller: ', error_1);
-                err = error_1 + "";
+                err = error_1 + '';
                 return [2 /*return*/, res.status(400).json({ status: false, msg: 'Error', err: err })];
             case 4: return [2 /*return*/];
         }

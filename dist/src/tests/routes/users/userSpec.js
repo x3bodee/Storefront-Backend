@@ -50,18 +50,16 @@ describe('POST /user ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/user')
-                            .send({
-                            first_name: "test product",
+                    return [4 /*yield*/, request.post('/api/user').send({
+                            first_name: 'test product',
                             last_name: 20,
                             password: '1234',
-                            email: 'abcd@poi.co'
+                            email: 'abcd@poi.co',
                         })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect(response.body.msg)
-                        .toEqual('Done');
+                    expect(response.body.msg).toEqual('Done');
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -77,16 +75,14 @@ describe('POST /user ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.post('/api/user/signin')
-                            .send({
+                    return [4 /*yield*/, request.post('/api/user/signin').send({
                             email: 'abcd@poi.co',
-                            password: '1234'
+                            password: '1234',
                         })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect(response.body.token)
-                        .toBeTruthy();
+                    expect(response.body.token).toBeTruthy();
                     return [3 /*break*/, 3];
                 case 2:
                     err_2 = _a.sent();
@@ -104,7 +100,8 @@ describe('GET /user ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.get('/api/user')
+                    return [4 /*yield*/, request
+                            .get('/api/user')
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
@@ -125,12 +122,13 @@ describe('GET /user ', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, request.get('/api/user/5')
+                    return [4 /*yield*/, request
+                            .get('/api/user/5')
                             .auth(TOKEN, { type: 'bearer' })];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);
-                    expect(response.body.user.first_name).toEqual("Adwa");
+                    expect(response.body.user.first_name).toEqual('Adwa');
                     return [3 /*break*/, 3];
                 case 2:
                     err_4 = _a.sent();
